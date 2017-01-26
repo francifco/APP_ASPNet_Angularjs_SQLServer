@@ -1,22 +1,47 @@
-var app = angular.module("myAppControlCitizen", []);
 
-app.controller("myControlCitizen", function ($scope, $http) {
-    debugger;
+var application = angular.module('myAppControllerCitizen', [
+    'ngInputDate'
+]);
 
-      $scope.addCitizen = function () {
+application.controller('myControllerCitizen', ['$scope', function($scope, $http) {
+        
+//hacer que este actulizada la fecha..
+$scope.dateBirth = new Date(2016, 1, 27);
 
+$scope.selectedTestAccount = null;
+$scope.testAccounts = ["barahona"];
+/*
+$scope.fecthAllProvinces = function() {
+    
+    $http({
+            method: 'GET',
+            url: 'http://localhost:3550/Province/getAllProvinces',
+        }).success(function (result) {
+        $scope.testAccounts = result;
+    })
+}
+
+///carga el listado de provincias inicialmente para el dropdown.
+$scope.fecthAllProvinces();
+  */
+
+$scope.addCitizen = function () {
+
+          var lastNames = $scope.inputLastNames;
+          
             var citizen = {
                 
-                cedula: $scope.inputIdentify,
+                identify: $scope.inputIdentify,
                 name: $scope.inputName,
-                lastNames: $scope.inputLastNames,
-                birtDate: $scope.inputBirthDate,
+                lastName1: lastNames.split(' ')[0],
+                lastName2: lastNames.split(' ')[1],
+                birthDate: $scope.dateBirth,
                 street: $scope.inputNumber,
                 sector: $scope.inputSector,
-                province: $scope.inputProvince,
-                profession: $scope.inputProfession,
-                status: $scope.inputStatus,
-                sex: $scope.inputSex
+                idProvince: $scope.inputProvince,
+                idProfession: $scope.inputProfession,
+                idStatus: $scope.inputStatus,
+                idSex: $scope.inputSex
             }
 
             $http({
@@ -42,6 +67,7 @@ app.controller("myControlCitizen", function ($scope, $http) {
         $scope.inputProfession = "";
         $scope.inputStatus = "";
         $scope.inputSex = "";
+        $scope.inputStreet = "";
     }
 
 
@@ -57,8 +83,20 @@ app.controller("myControlCitizen", function ($scope, $http) {
                 $scope.clearAllInput();
                 alert(response.data);
             }) 
-
-
     }
 
-})
+    //Función para enviar el formulario después de toda la validación ocurrida           
+    $scope.submitForm = function() {
+
+        //compueba que el formulario es completamente válido y lo envia a la API.
+        if ($scope.addCitizenForm.$valid) {
+            $scope.addCitizen();
+        }
+    }
+
+
+
+        
+
+    }
+]);
