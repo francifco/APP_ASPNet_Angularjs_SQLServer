@@ -6,7 +6,7 @@
 
   <meta charset="utf-8">
 
-  <title>Logistica JCE</title>
+  <title>Agragar a un Ciudadano JCE</title>
 
   <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
@@ -99,7 +99,7 @@
           <form class="form-horizontal" name="addCitizenForm" novalidate>
                 <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.identify.$invalid && !addCitizenForm.identify.$pristine }">
                     <label>Cedula: </label>
-                    <input type="number" name="identify" class="form-control" ng-model="identify" ng-minlength="11" ng-maxlength="11">
+                    <input type="text" name="identify" class="form-control" ng-model="identify" ng-minlength="11" ng-maxlength="11">
                     <p ng-show="addCitizenForm.identify.$error.minlength" class="help-block">Numero de cedula muy corto.</p>
                     <p ng-show="addCitizenForm.identify.$error.maxlength" class="help-block">Numero de cedula muy largo.</p>
                 </div>
@@ -135,7 +135,7 @@
                     
                       <div class="form-group padding-input-left" ng-class="{ 'has-error' : addCitizenForm.houseNumber.$invalid && !addCitizenForm.houseNumber.$pristine }">
                             <label>Numero: </label>
-                            <input type="text" name="houseNumber" class="form-control" ng-model="houseNumber" ng-minlength="3" ng-maxlength="18">
+                            <input type="text" name="houseNumber" class="form-control" ng-model="houseNumber" ng-minlength="1" ng-maxlength="3">
                             <p ng-show="addCitizenForm.houseNumber.$error.minlength" class="help-block">Numero de casa muy corta.</p>
                             <p ng-show="addCitizenForm.houseNumber.$error.maxlength" class="help-block">Numero de casa muy largo.</p>
                       </div>
@@ -181,7 +181,7 @@
         <div style="position: absolute;">
           <button type="button" class="btn btn-success" ng-disabled="addCitizenForm.$invalid" ng-click="submitForm()">Agregar Ciudadano</button>           
           <button type="button" class="btn btn-success" ng-click="clearAllInput()">Borrar campos</button>
-          <button type="button" class="btn btn-success" ng-click="goToStadisticView()">Ir a Estadisticas</button>
+          <button type="button" class="btn btn-success" ng-click="goToStadistic()">Ir a Estadisticas</button>
         </div>
       </div>
     </div>  

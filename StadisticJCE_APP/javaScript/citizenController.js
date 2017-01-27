@@ -109,21 +109,6 @@ $scope.addCitizen = function () {
         $scope.selectedGender = 0;
     }
 
-    ///obtiene el listado de los ciudadanos.
-    $scope.getCitizen = function(page, perpage) {
-
-         $http({
-                method: "GET",
-                url: "http://localhost:3550/Citizen/fetchCitizens",
-                datatype: "json",
-                data: JSON.stringify(citizen)
-            }).then(function (response) {
-
-                $scope.clearAllInput();
-                alert(response.data);
-            }) 
-    }
-
     //Función para enviar el formulario después de toda la validación ocurrida           
     $scope.submitForm = function() {
 
@@ -135,7 +120,8 @@ $scope.addCitizen = function () {
         }
     }
 
-
-
+     $scope.goToStadistic = function () {
+        window.location =  "aqui"+ window.location.href + '/MK02';
+    }
 
 });

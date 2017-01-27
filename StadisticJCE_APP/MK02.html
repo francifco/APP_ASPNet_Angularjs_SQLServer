@@ -1,0 +1,104 @@
+﻿
+
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+
+  <meta charset="utf-8">
+    
+    <title>Estadistica JCE</title>
+
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   <script src="node_modules/angular/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <script src="javaScript/statidisticController.js"></script>
+
+    <body>
+
+        <div style="overflow:scroll">
+
+            <div class="container col-sm-offset-1 col-sm-8">
+
+                <div class="w3-container w3-section w3-border">
+                    <h2>JCE-Lista de ciudadanos:</h2>
+                </div>
+
+                <div ng-app="myAppControllerStadistic">
+                    <div ng-controller="myControllerStadistic" ng-init="getAllCitizen()" class="divList">
+
+              
+                        <table cellpadding="12" class="table table-bordered table-hover">
+                            <tr>
+                                <td>
+                                    <b>CEDULA</b>
+                                </td>
+
+                                <td>
+                                    <b>APELLIDOS</b>
+                                </td>
+
+                                <td>
+                                    <b>NOMBRES</b>
+                                </td>
+
+                                <td>
+                                    <b>SEXO</b>
+                                </td>
+
+                                <td>
+                                    <b>PROFESION</b>
+                                </td>
+
+                                <td>
+                                    <b>PROVINCIA</b>
+                                </td>
+
+                                <td>
+                                    <b>ESTATUS</b>
+                                </td>
+
+                            </tr>
+                            <tr ng-repeat="citizen in citizens">
+                                <td>
+                                    {{citizen.indentify}}
+                                </td>
+
+                                <td>
+                                    {{citizen.lastName}}
+                                </td>
+
+                                <td>
+                                    {{citizen.idGender}}
+                                </td>
+
+                                <td>
+                                    {{citizen.idProfession}}
+                                </td>
+
+                                <td>
+                                    {{citizen.idProvince}}
+                                </td>
+                                
+                                <td>
+                                    {{citizen.idStatus}}
+                                </td>
+                                
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </head>
+</html>
+
+
+
+
+
+
+
