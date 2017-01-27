@@ -48,7 +48,7 @@ $scope.fecthAllProfessions = function() {
 ///carga el listado de profesiones inicialmente para el dropdown.
 $scope.fecthAllProfessions();
 
-
+//obtiene todos los estatus disponiebles.
 $scope.fecthAllStatus = function() {
     
     $http({
@@ -63,20 +63,21 @@ $scope.fecthAllStatus = function() {
 ///carga el listado de estatus inicialmente para el dropdown.
 $scope.fecthAllStatus();
 
-
+///Envia a la api el nuevo ciudadano.
 $scope.addCitizen = function () {
 
     var citizen = {
                 
-        identify: $scope.user.identify,
-        name: $scope.user.name,
-        lastName1: $scope.user.lastNames,
+        identify: $scope.identify,
+        name: $scope.name,
+        lastName: $scope.lastNames,
         birthDate: $scope.dateBirth,
-        street: $scope.user.houseNumber,
-        sector: $scope.user.sector,
-        idProvince: $scope.selectedTestAccount,
-        idProfession: $scope.inputProfession,
-        idStatus: $scope.inputStatus,
+        street: $scope.street,
+        sector: $scope.sector,
+        idProvince: $scope.selectedProvince,
+        idProfession: $scope.selectedProfession,
+        idStatus: $scope.selectedStatus,
+        houseNumber: $scope.houseNumber,
         gender: $scope.selectedGender
     }
 
@@ -90,23 +91,25 @@ $scope.addCitizen = function () {
                 $scope.clearAllInput();
                 alert(response.data);
             }) 
-    }
+}
 
+    //borra cada input del form.
     $scope.clearAllInput = function () {        
-        $scope.inputIdentify = "";
-        $scope.inputName = "";
-        $scope.inputLastNames = "";
-        $scope.inputBirthDate = "";
-        $scope.inputNumber = "";
-        $scope.inputSector ="";
-        $scope.inputProvince = "";
-        $scope.inputProfession = "";
-        $scope.inputStatus = "";
-        $scope.inputSex = "";
-        $scope.inputStreet = "";
+        
+        $scope.identify = "";
+        $scope.name ="";
+        $scope.lastNames ="";
+        $scope.dateBirth = new Date(2016, 1, 27)
+        $scope.street ="";
+        $scope.sector ="";
+        $scope.selectedProvince = 0;
+        $scope.selectedProfession = 0;
+        $scope.selectedStatus = 0;
+        $scope.houseNumber ="";
+        $scope.selectedGender = 0;
     }
 
-
+    ///obtiene el listado de los ciudadanos.
     $scope.getCitizen = function(page, perpage) {
 
          $http({
@@ -125,14 +128,14 @@ $scope.addCitizen = function () {
     $scope.submitForm = function() {
 
         //compueba que el formulario es completamente válido y lo envia a la API.
-        if ($scope.addCitizenForm.$valid) {
+        if ($scope.addCitizenForm.$valid) {        
             $scope.addCitizen();
+        } else {
+            alert("Favor de llenar todos los campos.");
         }
     }
 
 
 
-        
 
-    }
-);
+});

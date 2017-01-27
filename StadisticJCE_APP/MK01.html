@@ -5,7 +5,7 @@
 <head>
 
   <meta charset="utf-8">
-  
+
   <title>Logistica JCE</title>
 
   <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,28 +25,49 @@
     h2 {
         margin-bottom: 20px;
     }
-    .content-right {
-        
-        align-items: right;
-        position: left;
+ 
+    .left {
+        float: left;
+        width: 30%;
         margin: auto;
-        right: 80px;
-        width: 50%;
-        padding: 20px;
+    }
+
+    .right {
+        float: right;
+        width: 70%;
+        margin: auto;
+    }
+
+    .center {
+      margin: auto;
     }
 
     .padding-input-left {
-        padding-left: 80px;
+      padding-left: 80px;
     }
 
     .with_street {
       max-width: 100%;
     }
 
+    .button-menu {
+       position: absolute;
+    }
+
+    .container {
+      position: relative;
+    }
+
+    .button-add-image {
+      border-radius: 25px;
+      float: center;
+      width: 50%;
+      margin: center;
+    }
+
   </style>
 
 </head>
-
 
 
 <body>
@@ -57,100 +78,113 @@
         <div class="w3-container w3-section w3-border">
           <h2>JCE-Registro de Datos Ciudadanos</h2> 
         </div>
-
-      <div class="content-right">
-
-        <form class="form-horizontal" name="addCitizenForm" ng-submit="submitForm()" novalidate>
-
-              <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.identify.$invalid && !addCitizenForm.identify.$pristine }">
-                  <label>Cedula: </label>
-                  <input type="number" name="identify" class="form-control" ng-model="user.identify" ng-minlength="11" ng-maxlength="11">
-                  <p ng-show="addCitizenForm.identify.$error.minlength" class="help-block">Numero de cedula muy corto.</p>
-                  <p ng-show="addCitizenForm.identify.$error.maxlength" class="help-block">Numero de cedula muy largo.</p>
-              </div>
+    
+    <div class="container">
           
-              <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.name.$invalid && !addCitizenForm.name.$pristine }">
-                  <label>Nombres: </label>
-                  <input type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="3" ng-maxlength="50">
-                  <p ng-show="addCitizenForm.name.$error.minlength" class="help-block">Nombre muy corto.</p>
-                  <p ng-show="addCitizenForm.name.$error.maxlength" class="help-block">Nombre muy largo.</p>
-              </div>
-         
-              <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.lastNames.$invalid && !addCitizenForm.lastNames.$pristine }">
-                    <label>Apellidos: </label>
-                    <input type="text" name="lastNames" class="form-control" ng-model="user.lastNames" ng-minlength="3" ng-maxlength="50">
-                    <p ng-show="addCitizenForm.lastNames.$error.minlength" class="help-block">Apellido muy corto.</p>
-                    <p ng-show="addCitizenForm.lastNames.$error.maxlength" class="help-block">Apellido muy largo.</p>
-              </div>
-                  
-                <div class="form-group">
-                    <label for="date-birth" class="control-label">Fecha de nacimiento:</label>
-                    <div class="control">
-                        <input id="date-birth" class="form-control" type="date" ng-model="dateBirth">
-                    </div>
+          <div class = "left">
+            <div class= "center">
+              <img src="public/profile.png" alt="Profile View" style="width:304px;height:228px;">
+              <p>
+              </p>
+              <p>
+                <div class= "center">
+                  <button type="button" class="btn btn-success button-add-image center" ng-click="addImage()">Cargar imagen</button>
                 </div>
+              </p>
+            </div>
+          </div>
 
-              <div class="form-inline">
-                    <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.sector.$invalid && !addCitizenForm.sector.$pristine }">
-                      <label>Sector: </label>
-                      <input type="text" name="sector" class="form-control" ng-model="user.sector" ng-minlength="3" ng-maxlength="100">
-                      <p ng-show="addCitizenForm.sector.$error.minlength" class="help-block">Nombre del sector muy corto.</p>
-                      <p ng-show="addCitizenForm.sector.$error.maxlength" class="help-block">Nombre del sector muy largo.</p>
-                  </div>
-                  
-                    <div class="form-group padding-input-left" ng-class="{ 'has-error' : addCitizenForm.houseNumber.$invalid && !addCitizenForm.houseNumber.$pristine }">
-                          <label>Numero: </label>
-                          <input type="text" name="houseNumber" class="form-control" ng-model="user.houseNumber" ng-minlength="3" ng-maxlength="18">
-                          <p ng-show="addCitizenForm.houseNumber.$error.minlength" class="help-block">Numero de casa muy corta.</p>
-                          <p ng-show="addCitizenForm.houseNumber.$error.maxlength" class="help-block">Numero de casa muy largo.</p>
-                    </div>
-              </div>
+
+        <div class="right">
+          <form class="form-horizontal" name="addCitizenForm" novalidate>
+                <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.identify.$invalid && !addCitizenForm.identify.$pristine }">
+                    <label>Cedula: </label>
+                    <input type="number" name="identify" class="form-control" ng-model="identify" ng-minlength="11" ng-maxlength="11">
+                    <p ng-show="addCitizenForm.identify.$error.minlength" class="help-block">Numero de cedula muy corto.</p>
+                    <p ng-show="addCitizenForm.identify.$error.maxlength" class="help-block">Numero de cedula muy largo.</p>
+                </div>
               
-               <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.street.$invalid && !addCitizenForm.street.$pristine }">
-                        <label>Calle: </label>
-                        <input type="text" name="street" class="form-control with_street" ng-model="user.street" ng-minlength="3" ng-maxlength="100">
-                        <p ng-show="addCitizenForm.street.$error.minlength" class="help-block">Nombre de la calle muy corta.</p>
-                        <p ng-show="addCitizenForm.street.$error.maxlength" class="help-block">Nombre de la calle muy larga.</p>
-                  </div>
-           
-           
-            <div class="dropdown">   
-                <label>Seleccione la provincia:</label>
-                <select ng-model="selectedProvince" ng-options="item.idProvincia as item.provincia for item in provinces">
-                <option value=""></option>
-                </select>
-            
-                <label>Seleccione la profesion:</label>
-                <select ng-model="selectedProfession" ng-options="item.idProfesion as item.profesion for item in professions">
-                <option value=""></option>
-                </select>
-            </div>
-      
-            <div class="dropdown">
-              <label>Seleccione el estatus:</label>
-              <select ng-model="selectedStatus" ng-options="item.idEstatus as item.Estatus for item in status">
-              <option value=""></option>
-              </select>
-
-              <label>Seleccione el genero:</label>
-              <select ng-model="selectedGender">
-              <option value="">M</option>
-              <option value="">F</option>
-              </select>
-
-            </div>
-          </div>
-            </div>
-              <div>
-                <div>
-                  <button type="submit" class="btn btn-primary" ng-disabled="addCitizenForm.$invalid">Agregar Ciudadano:</button>
-                  <button type="button" class="btn btn-success" ng-click="addCitizen()">Agregar Ciudadano</button>           
-                  <button type="button" class="btn btn-success" ng-click="clearAllInput()">Borrar campos</button>
-                  <button type="button" class="btn btn-success" ng-click="goToStadisticView()">Ir a Estadisticas</button>
+                <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.name.$invalid && !addCitizenForm.name.$pristine }">
+                    <label>Nombres: </label>
+                    <input type="text" name="name" class="form-control" ng-model="name" ng-minlength="3" ng-maxlength="50">
+                    <p ng-show="addCitizenForm.name.$error.minlength" class="help-block">Nombre muy corto.</p>
+                    <p ng-show="addCitizenForm.name.$error.maxlength" class="help-block">Nombre muy largo.</p>
                 </div>
-              </div>     
-          </div>
+             
+                <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.lastNames.$invalid && !addCitizenForm.lastNames.$pristine }">
+                      <label>Apellidos: </label>
+                      <input type="text" name="lastNames" class="form-control" ng-model="lastNames" ng-minlength="3" ng-maxlength="50">
+                      <p ng-show="addCitizenForm.lastNames.$error.minlength" class="help-block">Apellido muy corto.</p>
+                      <p ng-show="addCitizenForm.lastNames.$error.maxlength" class="help-block">Apellido muy largo.</p>
+                </div>
+                    
+                  <div class="form-group">
+                      <label for="date-birth" class="control-label">Fecha de nacimiento:</label>
+                      <div class="control">
+                          <input id="date-birth" class="form-control" type="date" ng-model="dateBirth">
+                      </div>
+                  </div>
+
+                <div class="form-inline">
+                      <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.sector.$invalid && !addCitizenForm.sector.$pristine }">
+                        <label>Sector: </label>
+                        <input type="text" name="sector" class="form-control" ng-model="sector" ng-minlength="3" ng-maxlength="100">
+                        <p ng-show="addCitizenForm.sector.$error.minlength" class="help-block">Nombre del sector muy corto.</p>
+                        <p ng-show="addCitizenForm.sector.$error.maxlength" class="help-block">Nombre del sector muy largo.</p>
+                    </div>
+                    
+                      <div class="form-group padding-input-left" ng-class="{ 'has-error' : addCitizenForm.houseNumber.$invalid && !addCitizenForm.houseNumber.$pristine }">
+                            <label>Numero: </label>
+                            <input type="text" name="houseNumber" class="form-control" ng-model="houseNumber" ng-minlength="3" ng-maxlength="18">
+                            <p ng-show="addCitizenForm.houseNumber.$error.minlength" class="help-block">Numero de casa muy corta.</p>
+                            <p ng-show="addCitizenForm.houseNumber.$error.maxlength" class="help-block">Numero de casa muy largo.</p>
+                      </div>
+                </div>
+                
+                <div class="form-group" ng-class="{ 'has-error' : addCitizenForm.street.$invalid && !addCitizenForm.street.$pristine }">
+                          <label>Calle: </label>
+                          <input type="text" name="street" class="form-control with_street" ng-model="street" ng-minlength="3" ng-maxlength="100">
+                          <p ng-show="addCitizenForm.street.$error.minlength" class="help-block">Nombre de la calle muy corta.</p>
+                          <p ng-show="addCitizenForm.street.$error.maxlength" class="help-block">Nombre de la calle muy larga.</p>
+                    </div>
+            
+            
+              <div class="dropdown right">   
+                  <label>Seleccione la provincia:</label>
+                  <select ng-model="selectedProvince" ng-options="item.idProvincia as item.provincia for item in provinces">
+                  <option value="item.idProvincia"></option>
+                  </select>
+              
+                  <label>Seleccione la profesion:</label>
+                  <select ng-model="selectedProfession" ng-options="item.idProfesion as item.profesion for item in professions">
+                  <option value="item.idProfesion"></option>
+                  </select>
+              </div>
+        
+              <div class="dropdown right">
+                <label>Seleccione el estatus:</label>
+                <select ng-model="selectedStatus" ng-options="item.idEstatus as item.Estatus for item in status">
+                <option value="item.idEstatus"></option>
+                </select>
+
+                <label>Seleccione el genero:</label>
+                <select ng-model="selectedGender">
+                <option value="1">M</option>
+                <option value="2">F</option>
+                </select>
+
+              </div>
+              </form>
+            </div>
+        </div>
+       <div style="position: relative;">
+        <div style="position: absolute;">
+          <button type="button" class="btn btn-success" ng-disabled="addCitizenForm.$invalid" ng-click="submitForm()">Agregar Ciudadano</button>           
+          <button type="button" class="btn btn-success" ng-click="clearAllInput()">Borrar campos</button>
+          <button type="button" class="btn btn-success" ng-click="goToStadisticView()">Ir a Estadisticas</button>
         </div>
       </div>
+    </div>  
+  </div>      
   </body>
 </html>
