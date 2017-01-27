@@ -3,46 +3,82 @@ var application = angular.module('myAppControllerCitizen', [
     'ngInputDate'
 ]);
 
-application.controller('myControllerCitizen', ['$scope', function($scope, $http) {
+application.controller('myControllerCitizen', function($scope, $http) {
         
 //hacer que este actulizada la fecha..
 $scope.dateBirth = new Date(2016, 1, 27);
 
-$scope.selectedTestAccount = null;
-$scope.testAccounts = ["barahona"];
-/*
+$scope.selectedProvince = null;
+$scope.provinces = [];
+
+
+$scope.selectedProfession = null;
+$scope.professions = [];
+
+$scope.selectedStatus = null;
+$scope.status = [];
+
+
 $scope.fecthAllProvinces = function() {
-    
+
     $http({
             method: 'GET',
             url: 'http://localhost:3550/Province/getAllProvinces',
         }).success(function (result) {
-        $scope.testAccounts = result;
+
+        $scope.provinces = result;
     })
 }
 
 ///carga el listado de provincias inicialmente para el dropdown.
 $scope.fecthAllProvinces();
-  */
+
+
+$scope.fecthAllProfessions = function() {
+    
+    $http({
+            method: 'GET',
+            url: 'http://localhost:3550/Profession/getAllProfession',
+        }).success(function (result) {
+
+        $scope.professions = result;
+    })
+}
+
+///carga el listado de profesiones inicialmente para el dropdown.
+$scope.fecthAllProfessions();
+
+
+$scope.fecthAllStatus = function() {
+    
+    $http({
+            method: 'GET',
+            url: 'http://localhost:3550/Status/getAllStatus',
+        }).success(function (result) {
+
+        $scope.status = result;
+    })
+}
+
+///carga el listado de estatus inicialmente para el dropdown.
+$scope.fecthAllStatus();
+
 
 $scope.addCitizen = function () {
 
-          var lastNames = $scope.inputLastNames;
-          
-            var citizen = {
+    var citizen = {
                 
-                identify: $scope.inputIdentify,
-                name: $scope.inputName,
-                lastName1: lastNames.split(' ')[0],
-                lastName2: lastNames.split(' ')[1],
-                birthDate: $scope.dateBirth,
-                street: $scope.inputNumber,
-                sector: $scope.inputSector,
-                idProvince: $scope.inputProvince,
-                idProfession: $scope.inputProfession,
-                idStatus: $scope.inputStatus,
-                idSex: $scope.inputSex
-            }
+        identify: $scope.user.identify,
+        name: $scope.user.name,
+        lastName1: $scope.user.lastNames,
+        birthDate: $scope.dateBirth,
+        street: $scope.user.houseNumber,
+        sector: $scope.user.sector,
+        idProvince: $scope.selectedTestAccount,
+        idProfession: $scope.inputProfession,
+        idStatus: $scope.inputStatus,
+        gender: $scope.selectedGender
+    }
 
             $http({
                 method: "POST",
@@ -99,4 +135,4 @@ $scope.addCitizen = function () {
         
 
     }
-]);
+);
